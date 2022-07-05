@@ -582,6 +582,7 @@ This is used in conjunction with <code class="docutils literal notranslate"><spa
 <span class="n">batchSize</span><span class="p">:</span> <span class="n">the</span> <span class="n">batch</span> <span class="n">size</span> <span class="n">of</span> <span class="n">a</span> <span class="n">model</span>
 <span class="n">maxBatchDelay</span><span class="p">:</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">dalay</span> <span class="ow">in</span> <span class="n">msec</span> <span class="n">of</span> <span class="n">a</span> <span class="n">batch</span> <span class="n">of</span> <span class="n">a</span> <span class="n">model</span>
 <span class="n">responseTimeout</span><span class="p">:</span> <span class="n">the</span> <span class="n">timeout</span> <span class="ow">in</span> <span class="n">msec</span> <span class="n">of</span> <span class="n">a</span> <span class="n">model</span><span class="s1">&#39;s response</span>
+<span class="n">queueTimeout</span><span class="p">:</span> <span class="n">maximum</span> <span class="n">time</span><span class="p">,</span> <span class="ow">in</span> <span class="n">milliseconds</span><span class="p">,</span> <span class="n">a</span> <span class="n">prediction</span> <span class="n">request</span> <span class="n">can</span> <span class="n">stay</span> <span class="ow">in</span> <span class="n">queue</span> <span class="n">before</span> <span class="n">being</span> <span class="n">considered</span> <span class="n">stale</span>
 <span class="n">defaultVersion</span><span class="p">:</span> <span class="n">the</span> <span class="n">default</span> <span class="n">version</span> <span class="n">of</span> <span class="n">a</span> <span class="n">model</span>
 <span class="n">marName</span><span class="p">:</span> <span class="n">the</span> <span class="n">mar</span> <span class="n">file</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">model</span>
 </pre></div>
@@ -596,7 +597,8 @@ This is used in conjunction with <code class="docutils literal notranslate"><spa
 <span class="s">        &quot;maxWorkers&quot;: 1,\</span>
 <span class="s">        &quot;batchSize&quot;: 4,\</span>
 <span class="s">        &quot;maxBatchDelay&quot;: 100,\</span>
-<span class="s">        &quot;responseTimeout&quot;: 120\</span>
+<span class="s">        &quot;responseTimeout&quot;: 120,\</span>
+<span class="s">        &quot;queueTimeout&quot;: 120,\</span>
 <span class="s">    }\</span>
 <span class="s">  },\</span>
 <span class="s">  &quot;vgg16&quot;: {\</span>
@@ -607,7 +609,8 @@ This is used in conjunction with <code class="docutils literal notranslate"><spa
 <span class="s">        &quot;maxWorkers&quot;: 4,\</span>
 <span class="s">        &quot;batchSize&quot;: 8,\</span>
 <span class="s">        &quot;maxBatchDelay&quot;: 100,\</span>
-<span class="s">        &quot;responseTimeout&quot;: 120\</span>
+<span class="s">        &quot;responseTimeout&quot;: 120,\</span>
+<span class="s">        &quot;queueTimeout&quot;: 120,\</span>
 <span class="s">    }\</span>
 <span class="s">  }\</span>
 <span class="s">}</span>
@@ -625,6 +628,7 @@ This is used in conjunction with <code class="docutils literal notranslate"><spa
 <li><p><code class="docutils literal notranslate"><span class="pre">job_queue_size</span></code>: Number inference jobs that frontend will queue before backend can serve. Default: 100.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">async_logging</span></code>: Enable asynchronous logging for higher throughput, log output may be delayed if this is enabled. Default: false.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">default_response_timeout</span></code>: Timeout, in seconds, used for model’s backend workers before they are deemed unresponsive and rebooted. Default: 120 seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_queue_timeout</span></code>: Maximum time, in milliseconds, a prediction request can stay in queue before being considered stale. Default: 120 milliseconds.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">unregister_model_timeout</span></code>: Timeout, in seconds, used when handling an unregister model request when cleaning a process before it is deemed unresponsive and an error response is sent. Default: 120 seconds.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decode_input_request</span></code>: Configuration to let backend workers to decode requests, when the content type is known.
 If this is set to “true”, backend workers do “Bytearray to JSON object” conversion when the content type is “application/json” and
